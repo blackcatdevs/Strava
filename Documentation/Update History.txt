@@ -1,0 +1,13 @@
+Proof of concept
+Single SQL script to get activity data by API call, storing it in a temp table
+
+v1.0 initial commit 28th May 2021
+
+SSIS solution delivering basic functionality: 
+Create DB objects
+Get historic activity data
+Get last 2 days activity data and put into landing schema table
+Process from Landing schema table into Staging, either inserting or updating
+
+  
+

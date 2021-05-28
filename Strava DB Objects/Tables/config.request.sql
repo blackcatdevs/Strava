@@ -1,0 +1,7 @@
+﻿CREATE TABLE Config.Request (
+Request NVARCHAR(64) NOT NULL PRIMARY KEY,
+Description NVARCHAR(64),
+URL NVARCHAR(64),
+authHeader NVARCHAR(64),
+contentType NVARCHAR(64),
+);

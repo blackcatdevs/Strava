@@ -1,0 +1,13 @@
+Strava initial setup, to grant access - do this once
+
+Log in to your Strava account
+Go to https://www.strava.com/settings/api and note the client_ID and client_secret then add them to the Config.API_credentials table
+
+Paste the client ID into the URL below - note that the scope requested is read_all:
+https://www.strava.com/oauth/authorize?client_id=[REPLACE_WITH_YOUR_CLIENT_ID]&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=activity:read_all
+
+This will load a page where authorisation can be given, doing so will generate this dummy URL that contains an authorisation code that can be used to generate an access token:
+http://localhost/exchange_token?state=&code=[AUTHORIZATIONCODE]&scope=read,activity:read_all
+
+Add the authorization_code to the Config.API_credentials table
+

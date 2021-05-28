@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="HPPAVILLION_DEV_Strava_simon"
+  DTS:DTSID="{9BC48895-AA35-4A12-8DD1-6CCFED300187}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::Password]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="UserName">@[$Project::UserName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=HPPAVILLION\DEV;User ID=simon;Initial Catalog=Strava;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAy/B7YLea70WMiCvOa2ke/wAAAAACAAAAAAAQZgAAAAEAACAAAADM0PTPdmSIsNCejovk0SWNzqZ60s1wkqnsddFvv3sTbgAAAAAOgAAAAAIAACAAAABZwHREt3mQdjiUnbgWZ49FTHheZD+uXW6FFLAuLKNGKIAAAAAKVfDXqClImeTkCDn8nMpXRaI94dU4E+FLfk9h3S81vejw4fOPZ+9uqomohpdfdtzg0Wr+Eoga2f075c76oKfl6vD1lZ5CsGXi7OiyzbRaMi7t2HSM17r+JFRSzgQvjMAOxNRElcvjynulWlf2Z+RLYUetIpEx0SSF7sasaNZZJUAAAABdvKQG2I6ZcFwlxxCZNCLiDzXj6lpP1TeGNaqTmFAMkawjOUkHDgt27ZRYBx78jWSU+cARg0jmILFjQP9DtPkM</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

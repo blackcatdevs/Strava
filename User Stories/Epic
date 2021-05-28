@@ -1,0 +1,31 @@
+As a: Strava user 
+I want to: build visualisations for my activity data 
+So that: I can see trends over time and gain insights into my fitness
+
+
+Tech Spec
+
+A SQL Server database and table structure will be created to hold Strava activity, and will be populated via Strava API calls. There will be an initial load(s) of historic data 
+since 2015 and thereafer a daily incremental load of the last 7 days of activities.
+
+Values that relate to the activity itself (eg speed/distance) are fixed at the point that it is ended and pushed from the device to Garmin to Strava. 
+However, Strava specific activity values (eg activity title) can be modified after being initially set and Kudos and comments are added over time - although they are unlikely 
+to change more than a day or so after the activity is uploaded as it will drop down the feeds of other Strava users. So provision needs to be made for updating activities 
+that have changed after the initial export. 
+
+An SSIS package will be deployed to the catalogue of the Strava DB and run daily by a SQL Agent job - this will handle the following:
+
+The daily load will populate a table in the Landing schema that is truncated before each load is processed.
+
+Data from the Landing schema will be either inserted into or used to update existing records in a table in the Staging schema. 
+
+Data from the Staging schema will be transformed and used to populate the final tables which will have a dimensional structure. 
+
+PowerBI reports will be developed using the final tables as a source. 
+
+
+Acceptance Criteria
+
+Activity data is available and accurate as of the previous day
+
+Activity data is suitably structured for PowerBI reporting

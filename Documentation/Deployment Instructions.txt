@@ -1,0 +1,25 @@
+v1.0
+
+Requirements
+SQL Server 2019 DB (untested on earlier versions)
+SSIS catalog is set up
+SQL Server Agent service is running
+
+Instructions
+Open Strava.sln in Visual Studio
+Build/Publish 'Strava DB Objects'
+Follow the steps in 'Strava setup' 
+Execute config.SP_get_access_refresh_token (this should be run once only, unless Strava reauthorisation is required (eg with a different scope))
+
+In the DB, create an environment with UserName, Password, and ServerName variables using appropriate values
+Deploy GetActivities.dtsx to the DB's SSIS catalog 
+Configure the package and map the parameters to the environment variables 
+
+Truncate both Activities tables
+Execute landing.SP_get_historic_activities - repeat after waiting if rate limits are exceeded before all activities are downloaded
+
+Set up SQL agent job to call SP_get_activities daily
+
+
+
+

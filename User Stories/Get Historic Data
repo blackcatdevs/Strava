@@ -1,0 +1,14 @@
+As a: Strava user 
+I want to: access my hsitoric activites when building reports
+So that: I can see long term trends over time 
+
+
+Tech Spec
+
+Get historic data either via repeated API call or by requesting the Strava archive file and uploading it into the Activities table
+
+
+Acceptance Criteria
+
+
+
