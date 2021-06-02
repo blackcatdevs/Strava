@@ -1,11 +1,21 @@
-As a: Strava user 
-I want to: access my hsitoric activites when building reports
-So that: I can see long term trends over time 
+Task: 
+Get historic Strava activity data to date
 
+Outcome:
+The Landing.Activities table is populated with historic activity data 
 
-Tech Spec
+Additional Notes:
+This is a one-off task, once completed then there will be daily download of recent activities 
+This can be achieved by calling the SP_get_activities stored procedure in a WHILE loop passing it a date that  
+is earlier than the first activity as the after_date and then calling it again and passing the new most recent 
+activity date until there is no change.     
 
-Get historic data either via repeated API call or by requesting the Strava archive file and uploading it into the Activities table
+Assumptions:
+N/A
 
+Acceptance Criteria:
+The earliest activity and number of activities matches those in the archive that can be requested from Strava
 
-Acceptance Criteria
+Risks:
+N/A
+
