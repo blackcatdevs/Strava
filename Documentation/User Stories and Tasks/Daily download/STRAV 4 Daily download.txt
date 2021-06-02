@@ -1,1 +1,25 @@
-Get last 7 days of activities via API call
+Task: 
+Scheduled daily download of the last n days of activities are periodically downloaded from Strava and loaded into the DB
+
+Outcome:
+The last n days of activities are donwloaded and inserted into the Landing.Activities table. Since the API call uses the activity date 
+and not the activity amended date, and cumulative values (eg kudos) for the activity can be expected to increase for a few days after 
+the activity is uploaded to Strava - it is necessary to download the same activity multiple times during a window of n days, so the 
+Landing.Activities table will hae mutliple records for the same activity.
+
+The Staging.Activities table should only contain a single record for each activity that is updated when the cumulative values change 
+in subsequent downloads of the activity from Strava.      
+
+Additional Notes:
+
+
+Assumptions:
+The Landing.Activities table has already been populated with historic data - the script for this uses the most recent activity 
+date so would need rewriting if the table contains recent activities but not historic activities.
+
+Acceptance Criteria:
+The scheduled job runs every day and expected activities are present in the Landing.Activities table and in the Staging.Activities 
+table as a unique record for each activity with cumulative values (eg kudos) correct as of the last download of the record.
+
+Risks:
+N/A
