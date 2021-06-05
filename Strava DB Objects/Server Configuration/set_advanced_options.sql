@@ -29,4 +29,4 @@ value of the Ole Automation Procedures option can be viewed and changed by using
 
 EXEC sp_configure 'Ole Automation Procedures', 1
 RECONFIGURE
-GO;
+GO
