@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="148"
-  DTS:VersionGUID="{1D69FC3A-539C-4A08-B9BE-DEC35A86573C}">
+  DTS:VersionBuild="159"
+  DTS:VersionGUID="{3D9AA670-F65B-42EE-AB15-EFCA877DE043}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -75,7 +75,7 @@
                       refId="Package\Load into Landing\All inserts.Inputs[Sort Input].Columns[ID]"
                       cachedDataType="guid"
                       cachedName="ID"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]">
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[ID]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -108,7 +108,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]}</property>
+                          name="SortColumnId">#{Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[ID]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -117,136 +117,721 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load into Landing\Existing records"
-              componentClassID="Microsoft.ConditionalSplit"
-              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
-              name="Existing records"
+              refId="Package\Load into Landing\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input]"
-                  description="Input to the Conditional Split Transformation"
-                  name="Conditional Split Input">
+                  refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[kudos_count]"
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[athlete_id]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="athlete_id"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_id]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="name"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[distance]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="distance"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[distance]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[moving_time]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="moving_time"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[moving_time]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[elapsed_time]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="elapsed_time"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[elapsed_time]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[total_elevation_gain]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="total_elevation_gain"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[total_elevation_gain]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[activity_type]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="activity_type"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[activity_type]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[workout_type]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="workout_type"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[workout_type]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[activity_id]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="activity_id"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[activity_id]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[external_id]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="external_id"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[external_id]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[start_date]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="start_date"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[start_date]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[achievement_count]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="achievement_count"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[achievement_count]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[kudos_count]"
                       cachedDataType="wstr"
                       cachedLength="250"
                       cachedName="kudos_count"
                       lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[kudos_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[comment_count]"
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[comment_count]"
                       cachedDataType="wstr"
                       cachedLength="250"
                       cachedName="comment_count"
                       lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[comment_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[athlete_count]"
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[athlete_count]"
                       cachedDataType="wstr"
                       cachedLength="250"
                       cachedName="athlete_count"
                       lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[photo_count]"
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[photo_count]"
                       cachedDataType="wstr"
                       cachedLength="250"
                       cachedName="photo_count"
                       lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[photo_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[Staging_kudos_count]"
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[private]"
                       cachedDataType="wstr"
                       cachedLength="250"
-                      cachedName="Staging_kudos_count"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]" />
+                      cachedName="private"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[private]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[Staging_comment_count]"
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[gear_id]"
                       cachedDataType="wstr"
                       cachedLength="250"
-                      cachedName="Staging_comment_count"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]" />
+                      cachedName="gear_id"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[gear_id]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[Staging_athlete_count]"
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[average_speed]"
                       cachedDataType="wstr"
                       cachedLength="250"
-                      cachedName="Staging_athlete_count"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]" />
+                      cachedName="average_speed"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[average_speed]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[Staging_photo_count]"
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[max_speed]"
                       cachedDataType="wstr"
                       cachedLength="250"
-                      cachedName="Staging_photo_count"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]" />
+                      cachedName="max_speed"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[max_speed]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[Staging_total_photo_count]"
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[has_heartrate]"
                       cachedDataType="wstr"
                       cachedLength="250"
-                      cachedName="Staging_total_photo_count"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]" />
+                      cachedName="has_heartrate"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[has_heartrate]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[max_heartrate]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="max_heartrate"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[max_heartrate]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[pr_count]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="pr_count"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[pr_count]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[suffer_score]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="suffer_score"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[suffer_score]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input].Columns[ID]"
+                      cachedDataType="guid"
+                      cachedName="ID"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load into Landing\Existing records.Outputs[Updated counts]"
-                  description="Output 1 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
+                  refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output]"
                   exclusionGroup="1"
-                  name="Updated counts"
-                  synchronousInputId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">(#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[kudos_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[comment_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[photo_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]} != #{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]})</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">(Staging_kudos_count != kudos_count) || (Staging_comment_count != comment_count) || (Staging_athlete_count != athlete_count) || (Staging_photo_count != photo_count) || (Staging_total_photo_count != Staging_photo_count)</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">0</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Load into Landing\Existing records.Outputs[Conditional Split Default Output]"
-                  description="Default Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  name="Conditional Split Default Output"
-                  synchronousInputId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input]">
-                  <properties>
-                    <property
-                      dataType="System.Boolean"
-                      name="IsDefaultOut">true</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Load into Landing\Existing records.Outputs[Conditional Split Error Output]"
-                  description="Error Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Conditional Split Error Output"
-                  synchronousInputId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input]">
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load into Landing\Existing records.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[athlete_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[athlete_id]"
+                      name="athlete_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[distance]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[distance]"
+                      name="distance"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[distance]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[moving_time]"
                       dataType="i4"
-                      lineageId="Package\Load into Landing\Existing records.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[moving_time]"
+                      name="moving_time"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[moving_time]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[elapsed_time]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[elapsed_time]"
+                      name="elapsed_time"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[elapsed_time]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[total_elevation_gain]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[total_elevation_gain]"
+                      name="total_elevation_gain"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[total_elevation_gain]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[activity_type]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[activity_type]"
+                      name="activity_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[activity_type]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[workout_type]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[workout_type]"
+                      name="workout_type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[workout_type]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[activity_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[activity_id]"
+                      name="activity_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[activity_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[external_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[external_id]"
+                      name="external_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[external_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[start_date]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[start_date]"
+                      name="start_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[start_date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[achievement_count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[achievement_count]"
+                      name="achievement_count"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[achievement_count]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[kudos_count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[kudos_count]"
+                      name="kudos_count"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[kudos_count]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[comment_count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[comment_count]"
+                      name="comment_count"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[comment_count]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[athlete_count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[athlete_count]"
+                      name="athlete_count"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_count]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[photo_count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[photo_count]"
+                      name="photo_count"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[photo_count]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[private]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[private]"
+                      name="private"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[private]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[gear_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[gear_id]"
+                      name="gear_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[gear_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[average_speed]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[average_speed]"
+                      name="average_speed"
+                      precision="3"
+                      scale="1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[average_speed]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[max_speed]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[max_speed]"
+                      name="max_speed"
+                      precision="3"
+                      scale="1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[max_speed]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[has_heartrate]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[has_heartrate]"
+                      name="has_heartrate"
+                      precision="4"
+                      scale="1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[has_heartrate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[max_heartrate]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[max_heartrate]"
+                      name="max_heartrate"
+                      precision="4"
+                      scale="1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[max_heartrate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[pr_count]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[pr_count]"
+                      name="pr_count"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[pr_count]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[suffer_score]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[suffer_score]"
+                      name="suffer_score"
+                      precision="4"
+                      scale="1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[suffer_score]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[ID]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load into Landing\Existing records.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load into Landing\Existing records.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1524,7 +2109,7 @@ WHERE date_processed IS NULL</property>
                       refId="Package\Load into Landing\Insert errors.Inputs[Sort Input].Columns[ID]"
                       cachedDataType="guid"
                       cachedName="ID"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]">
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[ID]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -1585,7 +2170,7 @@ WHERE date_processed IS NULL</property>
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]}</property>
+                          name="SortColumnId">#{Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[ID]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1666,319 +2251,137 @@ WHERE date_processed IS NULL</property>
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[resource_state]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="resource_state"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[resource_state]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[resource_state]" />
-                    <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[athlete_id]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
                       cachedName="athlete_id"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[athlete_id]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_id]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[athlete_resource_state]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="athlete_resource_state"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[athlete_resource_state]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_resource_state]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[athlete_id]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[name]"
                       cachedDataType="wstr"
                       cachedLength="250"
                       cachedName="name"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[name]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[name]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[name]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[distance]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="numeric"
                       cachedName="distance"
+                      cachedPrecision="10"
+                      cachedScale="2"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[distance]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[distance]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[distance]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[moving_time]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="i4"
                       cachedName="moving_time"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[moving_time]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[moving_time]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[moving_time]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[elapsed_time]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="i4"
                       cachedName="elapsed_time"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[elapsed_time]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[elapsed_time]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[elapsed_time]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[total_elevation_gain]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="numeric"
                       cachedName="total_elevation_gain"
+                      cachedPrecision="18"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[total_elevation_gain]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[total_elevation_gain]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[activity_type]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="activity_type"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[activity_type]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[activity_type]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[total_elevation_gain]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[workout_type]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="i4"
                       cachedName="workout_type"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[workout_type]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[workout_type]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[workout_type]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[activity_id]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
                       cachedName="activity_id"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[activity_id]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[activity_id]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[activity_id]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[external_id]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
                       cachedName="external_id"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[external_id]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[external_id]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[upload_id]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="upload_id"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[upload_id]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[upload_id]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[external_id]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[start_date]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
                       cachedName="start_date"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[start_date]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[start_date]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[start_date_local]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="start_date_local"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[start_date_local]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[start_date_local]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[timezone]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="timezone"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[timezone]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[timezone]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[utc_offset]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="utc_offset"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[utc_offset]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[utc_offset]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[start_latlng]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="start_latlng"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[start_latlng]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[start_latlng]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[end_latlng]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="end_latlng"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[end_latlng]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[end_latlng]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[location_city]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="location_city"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[location_city]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[location_city]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[location_state]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="location_state"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[location_state]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[location_state]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[location_country]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="location_country"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[location_country]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[location_country]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[start_date]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[achievement_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="i4"
                       cachedName="achievement_count"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[achievement_count]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[achievement_count]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[achievement_count]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[kudos_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="i4"
                       cachedName="kudos_count"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[kudos_count]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[kudos_count]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[kudos_count]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[comment_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="i4"
                       cachedName="comment_count"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[comment_count]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[comment_count]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[comment_count]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[athlete_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="i4"
                       cachedName="athlete_count"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[athlete_count]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_count]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[athlete_count]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[photo_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="i4"
                       cachedName="photo_count"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[photo_count]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[photo_count]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[map_id]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="map_id"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[map_id]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[map_id]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[map_summary_polyline]"
-                      cachedDataType="nText"
-                      cachedName="map_summary_polyline"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[map_summary_polyline]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[map_summary_polyline]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[map_resource_state]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="map_resource_state"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[map_resource_state]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[map_resource_state]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[trainer]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="trainer"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[trainer]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[trainer]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[commute]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="commute"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[commute]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[commute]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[manual]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="manual"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[manual]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[manual]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[photo_count]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[private]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="bool"
                       cachedName="private"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[private]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[private]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[flagged]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="flagged"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[flagged]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[flagged]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[private]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[gear_id]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
                       cachedName="gear_id"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[gear_id]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[gear_id]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[from_accepted_tag]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="from_accepted_tag"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[from_accepted_tag]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[from_accepted_tag]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[gear_id]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[average_speed]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="numeric"
                       cachedName="average_speed"
+                      cachedPrecision="3"
+                      cachedScale="1"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[average_speed]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[average_speed]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[average_speed]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[max_speed]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="numeric"
                       cachedName="max_speed"
+                      cachedPrecision="3"
+                      cachedScale="1"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[max_speed]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[max_speed]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[average_cadence]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="average_cadence"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[average_cadence]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[average_cadence]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[average_watts]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="average_watts"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[average_watts]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[average_watts]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[weighted_average_watts]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="weighted_average_watts"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[weighted_average_watts]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[weighted_average_watts]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[kilojoules]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="kilojoules"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[kilojoules]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[kilojoules]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[device_watts]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="device_watts"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[device_watts]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[device_watts]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[has_heartrate]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="has_heartrate"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[has_heartrate]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[has_heartrate]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[max_speed]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[average_heartrate]"
                       cachedDataType="wstr"
@@ -1988,70 +2391,41 @@ WHERE date_processed IS NULL</property>
                       lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[average_heartrate]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[max_heartrate]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="numeric"
                       cachedName="max_heartrate"
+                      cachedPrecision="4"
+                      cachedScale="1"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[max_heartrate]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[max_heartrate]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[max_watts]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="max_watts"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[max_watts]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[max_watts]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[max_heartrate]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[pr_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="i4"
                       cachedName="pr_count"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[pr_count]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[pr_count]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[total_photo_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="total_photo_count"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[total_photo_count]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[total_photo_count]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[has_kudoed]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="has_kudoed"
-                      externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[has_kudoed]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[has_kudoed]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[pr_count]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[suffer_score]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
+                      cachedDataType="numeric"
                       cachedName="suffer_score"
+                      cachedPrecision="4"
+                      cachedScale="1"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[suffer_score]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[suffer_score]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[suffer_score]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[ID]"
                       cachedDataType="guid"
                       cachedName="ID"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[ID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[resource_state]"
-                      dataType="wstr"
-                      length="250"
-                      name="resource_state" />
-                    <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[athlete_id]"
-                      dataType="wstr"
-                      length="250"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
                       name="athlete_id" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[athlete_resource_state]"
-                      dataType="wstr"
-                      length="250"
-                      name="athlete_resource_state" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[name]"
                       dataType="wstr"
@@ -2059,243 +2433,108 @@ WHERE date_processed IS NULL</property>
                       name="name" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[distance]"
-                      dataType="wstr"
-                      length="250"
-                      name="distance" />
+                      dataType="numeric"
+                      name="distance"
+                      precision="10"
+                      scale="2" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[moving_time]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="moving_time" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[elapsed_time]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="elapsed_time" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[total_elevation_gain]"
-                      dataType="wstr"
-                      length="250"
-                      name="total_elevation_gain" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[activity_type]"
-                      dataType="wstr"
-                      length="250"
-                      name="activity_type" />
+                      dataType="numeric"
+                      name="total_elevation_gain"
+                      precision="5"
+                      scale="1" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[workout_type]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="workout_type" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[activity_id]"
-                      dataType="wstr"
-                      length="250"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
                       name="activity_id" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[external_id]"
-                      dataType="wstr"
-                      length="250"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
                       name="external_id" />
                     <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[upload_id]"
-                      dataType="wstr"
-                      length="250"
-                      name="upload_id" />
-                    <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[start_date]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="dbTimeStamp"
                       name="start_date" />
                     <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[start_date_local]"
-                      dataType="wstr"
-                      length="250"
-                      name="start_date_local" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[timezone]"
-                      dataType="wstr"
-                      length="250"
-                      name="timezone" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[utc_offset]"
-                      dataType="wstr"
-                      length="250"
-                      name="utc_offset" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[start_latlng]"
-                      dataType="wstr"
-                      length="250"
-                      name="start_latlng" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[end_latlng]"
-                      dataType="wstr"
-                      length="250"
-                      name="end_latlng" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[location_city]"
-                      dataType="wstr"
-                      length="250"
-                      name="location_city" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[location_state]"
-                      dataType="wstr"
-                      length="250"
-                      name="location_state" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[location_country]"
-                      dataType="wstr"
-                      length="250"
-                      name="location_country" />
-                    <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[achievement_count]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="achievement_count" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[kudos_count]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="kudos_count" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[comment_count]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="comment_count" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[athlete_count]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="athlete_count" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[photo_count]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="photo_count" />
                     <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[map_id]"
-                      dataType="wstr"
-                      length="250"
-                      name="map_id" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[map_summary_polyline]"
-                      dataType="nText"
-                      name="map_summary_polyline" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[map_resource_state]"
-                      dataType="wstr"
-                      length="250"
-                      name="map_resource_state" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[trainer]"
-                      dataType="wstr"
-                      length="250"
-                      name="trainer" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[commute]"
-                      dataType="wstr"
-                      length="250"
-                      name="commute" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[manual]"
-                      dataType="wstr"
-                      length="250"
-                      name="manual" />
-                    <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[private]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="bool"
                       name="private" />
                     <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[flagged]"
-                      dataType="wstr"
-                      length="250"
-                      name="flagged" />
-                    <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[gear_id]"
-                      dataType="wstr"
-                      length="250"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
                       name="gear_id" />
                     <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[from_accepted_tag]"
-                      dataType="wstr"
-                      length="250"
-                      name="from_accepted_tag" />
-                    <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[average_speed]"
-                      dataType="wstr"
-                      length="250"
-                      name="average_speed" />
+                      dataType="numeric"
+                      name="average_speed"
+                      precision="3"
+                      scale="1" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[max_speed]"
-                      dataType="wstr"
-                      length="250"
-                      name="max_speed" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[average_cadence]"
-                      dataType="wstr"
-                      length="250"
-                      name="average_cadence" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[average_watts]"
-                      dataType="wstr"
-                      length="250"
-                      name="average_watts" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[weighted_average_watts]"
-                      dataType="wstr"
-                      length="250"
-                      name="weighted_average_watts" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[kilojoules]"
-                      dataType="wstr"
-                      length="250"
-                      name="kilojoules" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[device_watts]"
-                      dataType="wstr"
-                      length="250"
-                      name="device_watts" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[has_heartrate]"
-                      dataType="wstr"
-                      length="250"
-                      name="has_heartrate" />
+                      dataType="numeric"
+                      name="max_speed"
+                      precision="3"
+                      scale="1" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[average_heartrate]"
-                      dataType="wstr"
-                      length="250"
-                      name="average_heartrate" />
+                      dataType="numeric"
+                      name="average_heartrate"
+                      precision="4"
+                      scale="1" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[max_heartrate]"
-                      dataType="wstr"
-                      length="250"
-                      name="max_heartrate" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[max_watts]"
-                      dataType="wstr"
-                      length="250"
-                      name="max_watts" />
+                      dataType="numeric"
+                      name="max_heartrate"
+                      precision="4"
+                      scale="1" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[pr_count]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="pr_count" />
                     <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[total_photo_count]"
-                      dataType="wstr"
-                      length="250"
-                      name="total_photo_count" />
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[has_kudoed]"
-                      dataType="wstr"
-                      length="250"
-                      name="has_kudoed" />
-                    <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[suffer_score]"
-                      dataType="wstr"
-                      length="250"
-                      name="suffer_score" />
+                      dataType="numeric"
+                      name="suffer_score"
+                      precision="4"
+                      scale="1" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
                       dataType="guid"
@@ -2304,6 +2543,10 @@ WHERE date_processed IS NULL</property>
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[date_created]"
                       dataType="dbTimeStamp"
                       name="date_created" />
+                    <externalMetadataColumn
+                      refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[activity_type_id]"
+                      dataType="i4"
+                      name="activity_type_id" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[date_amended]"
                       dataType="dbTimeStamp"
@@ -2350,16 +2593,26 @@ WHERE date_processed IS NULL</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * 
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 	activity_id,
+	kudos_count,
+	comment_count,
+	athlete_count,
+	photo_count 
+
 FROM Staging.Activities</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * 
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT 	activity_id,
+	kudos_count,
+	comment_count,
+	athlete_count,
+	photo_count 
+
 FROM Staging.Activities) [refTable]
-where [refTable].[ID] = ?</property>
+where [refTable].[activity_id] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -2390,12 +2643,12 @@ where [refTable].[ID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="resource_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_resource_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="name" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="distance" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="moving_time" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="elapsed_time" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="total_elevation_gain" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="activity_type" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="workout_type" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="activity_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="external_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="upload_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="start_date" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="start_date_local" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="timezone" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="utc_offset" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="start_latlng" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="end_latlng" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="location_city" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="location_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="location_country" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="achievement_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="kudos_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="comment_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="photo_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="map_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="map_summary_polyline" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="map_resource_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="trainer" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="commute" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="manual" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="private" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="flagged" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="gear_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="from_accepted_tag" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_speed" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="max_speed" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_cadence" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="weighted_average_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="kilojoules" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="device_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="has_heartrate" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_heartrate" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="max_heartrate" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="max_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="pr_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="total_photo_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="has_kudoed" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="suffer_score" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="activity_id" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="kudos_count" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="comment_count" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_count" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="photo_count" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]};</property>
+                  name="ParameterMap">#{Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[activity_id]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2419,15 +2672,17 @@ where [refTable].[ID] = ?</property>
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load into Landing\Lookup in Staging.Inputs[Lookup Input].Columns[ID]"
-                      cachedDataType="guid"
-                      cachedName="ID"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]">
+                      refId="Package\Load into Landing\Lookup in Staging.Inputs[Lookup Input].Columns[activity_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="activity_id"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[activity_id]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">ID</property>
+                          name="JoinToReferenceColumn">activity_id</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -2448,9 +2703,8 @@ where [refTable].[ID] = ?</property>
                   <outputColumns>
                     <outputColumn
                       refId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]"
-                      dataType="wstr"
+                      dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      length="250"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]"
                       name="Staging_kudos_count"
                       truncationRowDisposition="FailComponent">
@@ -2463,9 +2717,8 @@ where [refTable].[ID] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]"
-                      dataType="wstr"
+                      dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      length="250"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]"
                       name="Staging_comment_count"
                       truncationRowDisposition="FailComponent">
@@ -2478,9 +2731,8 @@ where [refTable].[ID] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]"
-                      dataType="wstr"
+                      dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      length="250"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]"
                       name="Staging_athlete_count"
                       truncationRowDisposition="FailComponent">
@@ -2493,9 +2745,8 @@ where [refTable].[ID] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]"
-                      dataType="wstr"
+                      dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      length="250"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]"
                       name="Staging_photo_count"
                       truncationRowDisposition="FailComponent">
@@ -2504,21 +2755,6 @@ where [refTable].[ID] = ?</property>
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
                           name="CopyFromReferenceColumn">photo_count</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Copy Column"
-                      length="250"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]"
-                      name="Staging_total_photo_count"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">total_photo_count</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -3125,9 +3361,8 @@ WHERE id = ?
 kudos_count = ?,
 comment_count = ?,
 athlete_count = ?,
-photo_count = ?,
-total_photo_count = ?
-WHERE id = ?</property>
+photo_count = ?
+WHERE activity_id = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -3150,53 +3385,43 @@ WHERE id = ?</property>
                   name="OLE DB Command Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[Staging_kudos_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="Staging_kudos_count"
-                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[Staging_comment_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="Staging_comment_count"
-                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[Staging_athlete_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="Staging_athlete_count"
-                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[Staging_photo_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="Staging_photo_count"
-                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[Staging_total_photo_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="Staging_total_photo_count"
+                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[activity_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="activity_id"
                       externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]" />
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[activity_id]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[ID]"
-                      cachedDataType="guid"
-                      cachedName="ID"
-                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]" />
+                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[photo_count]"
+                      cachedDataType="i4"
+                      cachedName="photo_count"
+                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[photo_count]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[athlete_count]"
+                      cachedDataType="i4"
+                      cachedName="athlete_count"
+                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[athlete_count]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[comment_count]"
+                      cachedDataType="i4"
+                      cachedName="comment_count"
+                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[comment_count]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[kudos_count]"
+                      cachedDataType="i4"
+                      cachedName="kudos_count"
+                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output].Columns[kudos_count]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="Param_0">
                       <properties>
                         <property
@@ -3207,8 +3432,7 @@ WHERE id = ?</property>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="Param_1">
                       <properties>
                         <property
@@ -3219,8 +3443,7 @@ WHERE id = ?</property>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="Param_2">
                       <properties>
                         <property
@@ -3231,8 +3454,7 @@ WHERE id = ?</property>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="i4"
                       name="Param_3">
                       <properties>
                         <property
@@ -3243,20 +3465,10 @@ WHERE id = ?</property>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      dataType="wstr"
-                      length="250"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
                       name="Param_4">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      dataType="guid"
-                      name="Param_5">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -3302,8 +3514,13 @@ WHERE id = ?</property>
           </components>
           <paths>
             <path
+              refId="Package\Load into Landing.Paths[Data Conversion Output]"
+              endId="Package\Load into Landing\Lookup in Staging.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Load into Landing\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
               refId="Package\Load into Landing.Paths[Lookup Match Output]"
-              endId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input]"
+              endId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input]"
               name="Lookup Match Output"
               startId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output]" />
             <path
@@ -3343,7 +3560,7 @@ WHERE id = ?</property>
               startId="Package\Load into Landing\Insert into Staging.Outputs[OLE DB Destination Error Output]" />
             <path
               refId="Package\Load into Landing.Paths[OLE DB Source Output]"
-              endId="Package\Load into Landing\Lookup in Staging.Inputs[Lookup Input]"
+              endId="Package\Load into Landing\Data Conversion.Inputs[Data Conversion Input]"
               name="OLE DB Source Output"
               startId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output]" />
             <path
@@ -3356,11 +3573,6 @@ WHERE id = ?</property>
               endId="Package\Load into Landing\Merge Join.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\Load into Landing\Insert errors.Outputs[Sort Output]" />
-            <path
-              refId="Package\Load into Landing.Paths[Updated counts]"
-              endId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input]"
-              name="Updated counts"
-              startId="Package\Load into Landing\Existing records.Outputs[Updated counts]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -3427,77 +3639,49 @@ WHERE id = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="121.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Multicast"
-          TopLeft="205.624996935949,213.199996187687" />
-        <NodeLayout
-          Size="202.666666666667,42.6666666666667"
-          Id="Package\Load into Landing\Get activities from landing"
-          TopLeft="394.999994114042,32.4999994188547" />
-        <NodeLayout
           Size="138,42.6666666666667"
           Id="Package\Load into Landing\Insert errors"
           TopLeft="89.3749986682087,371.799993351698" />
-        <NodeLayout
-          Size="217.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Update Landing (insert or error)"
-          TopLeft="298.749995548278,482.26665987889" />
-        <NodeLayout
-          Size="164,42.6666666666667"
-          Id="Package\Load into Landing\Lookup in Staging"
-          TopLeft="421.249993722886,126.749997733533" />
-        <NodeLayout
-          Size="131.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Merge Join"
-          TopLeft="308.749995399266,378.299993235469" />
         <NodeLayout
           Size="153.333333333334,42.6666666666667"
           Id="Package\Load into Landing\Update Landing (update)"
           TopLeft="552.499991767108,482.916659867267" />
         <NodeLayout
-          Size="153.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Existing records"
-          TopLeft="622.499990724027,248.949995548427" />
+          Size="188,42.6666666666667"
+          Id="Package\Load into Landing\Update Landing (error)"
+          TopLeft="746.249988880009,484.899991329312" />
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Multicast"
+          TopLeft="206.249996926636,213.199996187687" />
+        <NodeLayout
+          Size="131.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Merge Join"
+          TopLeft="308.749995399266,378.299993235469" />
+        <NodeLayout
+          Size="217.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Update Landing (insert or error)"
+          TopLeft="298.749995548278,482.26665987889" />
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Data Conversion"
+          TopLeft="213.749996814877,80.2666654578845" />
         <NodeLayout
           Size="166.666666666667,42.6666666666667"
           Id="Package\Load into Landing\Insert into Staging"
-          TopLeft="79.3749988172203,283.399994932413" />
+          TopLeft="79.3749988172203,285.349994897544" />
         <NodeLayout
           Size="152,42.6666666666667"
           Id="Package\Load into Landing\Update Staging"
-          TopLeft="620.624990751967,378.299993235468" />
+          TopLeft="621.874990733341,378.949993223845" />
+        <NodeLayout
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\Load into Landing\Get activities from landing"
+          TopLeft="395.624994104729,35.0999993723631" />
         <NodeLayout
           Size="125.333333333334,42.6666666666667"
           Id="Package\Load into Landing\All inserts"
           TopLeft="303.749995473773,294.449994734824" />
-        <NodeLayout
-          Size="188,42.6666666666667"
-          Id="Package\Load into Landing\Update Landing (error)"
-          TopLeft="746.249988880009,484.899991329312" />
-        <EdgeLayout
-          Id="Package\Load into Landing.Paths[Updated counts]"
-          TopLeft="697.89582407133,291.616662215094">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,86.6833310203747"
-              Start="0,0"
-              End="0,79.1833310203747">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,79.1833310203747" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-35.1465234375,33.7869780101874,70.293046875,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Sort Output1]"
           TopLeft="227.374998668209,396.383326626917">
@@ -3544,18 +3728,30 @@ WHERE id = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[OLE DB Source Output]"
-          TopLeft="499.791660585131,75.1666660855214">
+          TopLeft="395.624994104729,56.4333327056964">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,51.5833316480116"
+              EndConnector="-24.5416639565186,39.3888883077436"
               Start="0,0"
-              End="0,44.0833316480116">
+              End="-17.0416639565186,39.3888883077436">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.0833316480116" />
+                    End="-10.1927695170228,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.1927695170228,0"
+                    Point2="-14.1927695170228,0"
+                    Point3="-14.1927695170228,4" />
+                  <mssgle:LineSegment
+                    End="-14.1927695170228,35.3888883077436" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.1927695170228,35.3888883077436"
+                    Point2="-14.1927695170228,39.3888883077436"
+                    Point3="-18.1927695170228,39.3888883077436" />
+                  <mssgle:LineSegment
+                    End="-17.0416639565186,39.3888883077436" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3566,54 +3762,54 @@ WHERE id = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[OLE DB Destination Error Output]"
-          TopLeft="160.541665409381,326.06666159908">
+          TopLeft="160.541665409381,328.016661564211">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45.7333317526185"
+              EndConnector="0,43.7833317874873"
               Start="0,0"
-              End="0,38.2333317526185">
+              End="0,36.2833317874873">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.2333317526185" />
+                    End="0,36.2833317874873" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-73.20890625,13.3998690013093,146.4178125,11.43359375"
+              BoundingBox="-73.20890625,12.4248690187437,146.4178125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[OLE DB Command Output]"
-          TopLeft="672.624990751967,420.966659902135">
+          TopLeft="673.874990733341,421.616659890512">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-43.4583323181923,61.9499999651322"
+              EndConnector="-44.708332299566,61.2999999767552"
               Start="0,0"
-              End="-43.4583323181923,54.4499999651322">
+              End="-44.708332299566,53.7999999767552">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.167187485835" />
+                    End="0,20.9031249905568" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.167187485835"
-                    Point2="0,25.167187485835"
-                    Point3="-4,25.167187485835" />
+                    Point1="0,20.9031249905568"
+                    Point2="0,24.9031249905568"
+                    Point3="-4,24.9031249905568" />
                   <mssgle:LineSegment
-                    End="-39.4583323181923,25.167187485835" />
+                    End="-40.708332299566,24.9031249905568" />
                   <mssgle:CubicBezierSegment
-                    Point1="-39.4583323181923,25.167187485835"
-                    Point2="-43.4583323181923,25.167187485835"
-                    Point3="-43.4583323181923,29.167187485835" />
+                    Point1="-40.708332299566,24.9031249905568"
+                    Point2="-44.708332299566,24.9031249905568"
+                    Point3="-44.708332299566,28.9031249905568" />
                   <mssgle:LineSegment
-                    End="-43.4583323181923,54.4499999651322" />
+                    End="-44.708332299566,53.7999999767552" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3624,66 +3820,66 @@ WHERE id = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[OLE DB Command Error Output]"
-          TopLeft="720.624990751967,420.966659902135">
+          TopLeft="721.874990733341,421.616659890512">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="119.624998128041,63.9333314271773"
+              EndConnector="118.374998146668,63.2833314388002"
               Start="0,0"
-              End="119.624998128041,56.4333314271773">
+              End="118.374998146668,55.7833314388002">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.9729158922908" />
+                    End="0,21.7088533970126" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.9729158922908"
-                    Point2="0,25.9729158922908"
-                    Point3="4,25.9729158922908" />
+                    Point1="0,21.7088533970126"
+                    Point2="0,25.7088533970126"
+                    Point3="4,25.7088533970126" />
                   <mssgle:LineSegment
-                    End="115.624998128041,25.9729158922908" />
+                    End="114.374998146668,25.7088533970126" />
                   <mssgle:CubicBezierSegment
-                    Point1="115.624998128041,25.9729158922908"
-                    Point2="119.624998128041,25.9729158922908"
-                    Point3="119.624998128041,29.9729158922908" />
+                    Point1="114.374998146668,25.7088533970126"
+                    Point2="118.374998146668,25.7088533970126"
+                    Point3="118.374998146668,29.7088533970126" />
                   <mssgle:LineSegment
-                    End="119.624998128041,56.4333314271773" />
+                    End="118.374998146668,55.7833314388002" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-10.8964071859794,30.9729158922908,141.4178125,11.609375"
+              BoundingBox="-11.5214071766658,30.7088533970126,141.4178125,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Multicast Output 3]"
-          TopLeft="285.180552491504,255.866662854354">
+          TopLeft="285.805552482191,255.866662854354">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="81.2361096489351,38.5833318804705"
+              EndConnector="80.6111096582483,38.5833318804703"
               Start="0,0"
-              End="81.2361096489351,31.0833318804705">
+              End="80.6111096582483,31.0833318804703">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.7346342592808" />
+                    End="0,11.7346342592807" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,11.7346342592808"
-                    Point2="0,15.7346342592808"
-                    Point3="4,15.7346342592808" />
+                    Point1="0,11.7346342592807"
+                    Point2="0,15.7346342592807"
+                    Point3="4,15.7346342592807" />
                   <mssgle:LineSegment
-                    End="77.2361096489351,15.7346342592808" />
+                    End="76.6111096582483,15.7346342592807" />
                   <mssgle:CubicBezierSegment
-                    Point1="77.2361096489351,15.7346342592808"
-                    Point2="81.2361096489351,15.7346342592808"
-                    Point3="81.2361096489351,19.7346342592808" />
+                    Point1="76.6111096582483,15.7346342592807"
+                    Point2="80.6111096582483,15.7346342592807"
+                    Point3="80.6111096582483,19.7346342592807" />
                   <mssgle:LineSegment
-                    End="81.2361096489351,31.0833318804705" />
+                    End="80.6111096582483,31.0833318804703" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3694,30 +3890,30 @@ WHERE id = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Multicast Output 1]"
-          TopLeft="247.402774713727,255.866662854354">
+          TopLeft="248.027774704414,255.866662854354">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-84.694442563173,27.5333320780593"
+              EndConnector="-85.3194425538601,29.4833320431903"
               Start="0,0"
-              End="-84.694442563173,20.0333320780593">
+              End="-85.3194425538601,21.9833320431903">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,7.22834366740814" />
+                    End="0,8.02357141891493" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,7.22834366740814"
-                    Point2="0,11.2283436674081"
-                    Point3="-4,11.2283436674081" />
+                    Point1="0,8.02357141891493"
+                    Point2="0,12.0235714189149"
+                    Point3="-4,12.0235714189149" />
                   <mssgle:LineSegment
-                    End="-80.694442563173,11.2283436674081" />
+                    End="-81.3194425538601,12.0235714189149" />
                   <mssgle:CubicBezierSegment
-                    Point1="-80.694442563173,11.2283436674081"
-                    Point2="-84.694442563173,11.2283436674081"
-                    Point3="-84.694442563173,15.2283436674081" />
+                    Point1="-81.3194425538601,12.0235714189149"
+                    Point2="-85.3194425538601,12.0235714189149"
+                    Point3="-85.3194425538601,16.0235714189149" />
                   <mssgle:LineSegment
-                    End="-84.694442563173,20.0333320780593" />
+                    End="-85.3194425538601,21.9833320431903" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3760,75 +3956,113 @@ WHERE id = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Load into Landing\Lookup in Staging"
+          TopLeft="421.874993713573,127.39999772191" />
         <EdgeLayout
-          Id="Package\Load into Landing.Paths[Lookup No Match Output]"
-          TopLeft="477.249993722886,169.4166644002">
+          Id="Package\Load into Landing.Paths[Data Conversion Output]"
+          TopLeft="371.08333014821,107.377776568996">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-210.958330120271,43.7833317874873"
+              EndConnector="50.7916635653623,41.3555544862478"
               Start="0,0"
-              End="-210.958330120271,36.2833317874873">
+              End="43.2916635653623,41.3555544862478">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7671491311543" />
+                    End="17.4181713829841,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.7671491311543"
-                    Point2="0,17.7671491311543"
-                    Point3="-4,17.7671491311543" />
+                    Point1="17.4181713829841,0"
+                    Point2="21.4181713829841,0"
+                    Point3="21.4181713829841,4" />
                   <mssgle:LineSegment
-                    End="-206.958330120271,17.7671491311543" />
+                    End="21.4181713829841,37.3555544862478" />
                   <mssgle:CubicBezierSegment
-                    Point1="-206.958330120271,17.7671491311543"
-                    Point2="-210.958330120271,17.7671491311543"
-                    Point3="-210.958330120271,21.7671491311543" />
+                    Point1="21.4181713829841,37.3555544862478"
+                    Point2="21.4181713829841,41.3555544862478"
+                    Point3="25.4181713829841,41.3555544862478" />
                   <mssgle:LineSegment
-                    End="-210.958330120271,36.2833317874873" />
+                    End="43.2916635653623,41.3555544862478" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-161.285551778885,22.7671491311543,111.6127734375,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Lookup Match Output]"
-          TopLeft="529.249993722886,169.4166644002">
+          TopLeft="529.874993713573,170.066664388577">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="169.916663667808,79.5333311482274"
+              EndConnector="167.999997019768,208.883328835268"
               Start="0,0"
-              End="169.916663667808,72.0333311482274">
+              End="167.999997019768,201.383328835268">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.274395248556" />
+                    End="0,80.7642493824278" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.274395248556"
-                    Point2="0,32.274395248556"
-                    Point3="4,32.274395248556" />
+                    Point1="0,80.7642493824278"
+                    Point2="0,84.7642493824278"
+                    Point3="4,84.7642493824278" />
                   <mssgle:LineSegment
-                    End="165.916663667808,32.274395248556" />
+                    End="163.999997019768,84.7642493824278" />
                   <mssgle:CubicBezierSegment
-                    Point1="165.916663667808,32.274395248556"
-                    Point2="169.916663667808,32.274395248556"
-                    Point3="169.916663667808,36.274395248556" />
+                    Point1="163.999997019768,84.7642493824278"
+                    Point2="167.999997019768,84.7642493824278"
+                    Point3="167.999997019768,88.7642493824278" />
                   <mssgle:LineSegment
-                    End="169.916663667808,72.0333311482274" />
+                    End="167.999997019768,201.383328835268" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="36.766945115154,37.274395248556,96.3827734375,11.609375"
+              BoundingBox="35.808611791134,89.7642493824278,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load into Landing.Paths[Lookup No Match Output]"
+          TopLeft="477.874993713573,170.066664388577">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-210.95833012027,43.1333317991102"
+              Start="0,0"
+              End="-210.95833012027,35.6333317991102">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5033810199288" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5033810199288"
+                    Point2="0,17.5033810199288"
+                    Point3="-4,17.5033810199288" />
+                  <mssgle:LineSegment
+                    End="-206.95833012027,17.5033810199288" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-206.95833012027,17.5033810199288"
+                    Point2="-210.95833012027,17.5033810199288"
+                    Point3="-210.95833012027,21.5033810199288" />
+                  <mssgle:LineSegment
+                    End="-210.95833012027,35.6333317991102" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-161.285551778885,22.5033810199288,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3849,29 +4083,6 @@ WHERE id = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load into Landing\Lookup in Staging">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load into Landing\Insert into Staging">
     <Properties>
       <Property>
@@ -3881,6 +4092,29 @@ WHERE id = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load into Landing\Lookup in Staging">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
