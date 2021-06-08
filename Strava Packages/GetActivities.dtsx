@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="148"
-  DTS:VersionGUID="{1D69FC3A-539C-4A08-B9BE-DEC35A86573C}">
+  DTS:VersionBuild="154"
+  DTS:VersionGUID="{F409AD8D-866A-4F94-8592-A6C3F6E82EA3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -177,12 +177,6 @@
                       cachedLength="250"
                       cachedName="Staging_photo_count"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[Staging_total_photo_count]"
-                      cachedDataType="wstr"
-                      cachedLength="250"
-                      cachedName="Staging_total_photo_count"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -202,13 +196,13 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">(#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[kudos_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[comment_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[photo_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]} != #{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]})</property>
+                      name="Expression">(#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[kudos_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[comment_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[photo_count]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">(Staging_kudos_count != kudos_count) || (Staging_comment_count != comment_count) || (Staging_athlete_count != athlete_count) || (Staging_photo_count != photo_count) || (Staging_total_photo_count != Staging_photo_count)</property>
+                      name="FriendlyExpression">(Staging_kudos_count != kudos_count) || (Staging_comment_count != comment_count) || (Staging_athlete_count != athlete_count) || (Staging_photo_count != photo_count)</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -281,7 +275,8 @@
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * 
 FROM Landing.Activities 
-WHERE date_processed IS NULL</property>
+WHERE date_processed IS NULL
+ORDER BY activity_id, date_created DESC</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -2359,7 +2354,7 @@ FROM Staging.Activities</property>
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * 
 FROM Staging.Activities) [refTable]
-where [refTable].[ID] = ?</property>
+where [refTable].[activity_id] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -2390,12 +2385,12 @@ where [refTable].[ID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="resource_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_resource_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="name" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="distance" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="moving_time" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="elapsed_time" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="total_elevation_gain" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="activity_type" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="workout_type" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="activity_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="external_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="upload_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="start_date" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="start_date_local" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="timezone" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="utc_offset" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="start_latlng" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="end_latlng" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="location_city" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="location_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="location_country" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="achievement_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="kudos_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="comment_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="photo_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="map_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="map_summary_polyline" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="map_resource_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="trainer" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="commute" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="manual" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="private" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="flagged" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="gear_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="from_accepted_tag" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_speed" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="max_speed" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_cadence" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="weighted_average_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="kilojoules" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="device_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="has_heartrate" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_heartrate" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="max_heartrate" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="max_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="pr_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="total_photo_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="has_kudoed" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="suffer_score" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ID" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="resource_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_resource_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="name" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="distance" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="moving_time" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="elapsed_time" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="total_elevation_gain" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="activity_type" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="workout_type" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="activity_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="external_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="upload_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="start_date" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="start_date_local" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="timezone" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="utc_offset" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="start_latlng" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="end_latlng" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="location_city" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="location_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="location_country" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="achievement_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="kudos_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="comment_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="athlete_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="photo_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="map_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="map_summary_polyline" dataType="DT_NTEXT" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="map_resource_state" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="trainer" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="commute" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="manual" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="private" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="flagged" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="gear_id" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="from_accepted_tag" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_speed" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="max_speed" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_cadence" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="weighted_average_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="kilojoules" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="device_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="has_heartrate" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="average_heartrate" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="max_heartrate" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="max_watts" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="pr_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="total_photo_count" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="has_kudoed" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="suffer_score" dataType="DT_WSTR" length="250" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="date_created" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="date_amended" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]};</property>
+                  name="ParameterMap">#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[activity_id]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2419,15 +2414,16 @@ where [refTable].[ID] = ?</property>
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load into Landing\Lookup in Staging.Inputs[Lookup Input].Columns[ID]"
-                      cachedDataType="guid"
-                      cachedName="ID"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]">
+                      refId="Package\Load into Landing\Lookup in Staging.Inputs[Lookup Input].Columns[activity_id]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="activity_id"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[activity_id]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">ID</property>
+                          name="JoinToReferenceColumn">activity_id</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -3126,8 +3122,8 @@ kudos_count = ?,
 comment_count = ?,
 athlete_count = ?,
 photo_count = ?,
-total_photo_count = ?
-WHERE id = ?</property>
+date_amended = GETDATE()
+WHERE activity_id = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -3178,18 +3174,12 @@ WHERE id = ?</property>
                       externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[Staging_total_photo_count]"
+                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[activity_id]"
                       cachedDataType="wstr"
                       cachedLength="250"
-                      cachedName="Staging_total_photo_count"
+                      cachedName="activity_id"
                       externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]" />
-                    <inputColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].Columns[ID]"
-                      cachedDataType="guid"
-                      cachedName="ID"
-                      externalMetadataColumnId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]" />
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[activity_id]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3246,17 +3236,6 @@ WHERE id = ?</property>
                       dataType="wstr"
                       length="250"
                       name="Param_4">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      dataType="guid"
-                      name="Param_5">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -3447,54 +3426,54 @@ WHERE id = ?</property>
           Id="Package\Load into Landing\Lookup in Staging"
           TopLeft="421.249993722886,126.749997733533" />
         <NodeLayout
-          Size="131.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Merge Join"
-          TopLeft="308.749995399266,378.299993235469" />
-        <NodeLayout
-          Size="153.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Update Landing (update)"
-          TopLeft="552.499991767108,482.916659867267" />
+          Size="152,42.6666666666667"
+          Id="Package\Load into Landing\Update Staging"
+          TopLeft="620.624990751967,378.299993235468" />
         <NodeLayout
           Size="153.333333333334,42.6666666666667"
           Id="Package\Load into Landing\Existing records"
-          TopLeft="622.499990724027,248.949995548427" />
+          TopLeft="622.499990724027,248.29999556005" />
+        <NodeLayout
+          Size="131.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Merge Join"
+          TopLeft="308.749995399266,378.299993235469" />
         <NodeLayout
           Size="166.666666666667,42.6666666666667"
           Id="Package\Load into Landing\Insert into Staging"
           TopLeft="79.3749988172203,283.399994932413" />
         <NodeLayout
-          Size="152,42.6666666666667"
-          Id="Package\Load into Landing\Update Staging"
-          TopLeft="620.624990751967,378.299993235468" />
-        <NodeLayout
-          Size="125.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\All inserts"
-          TopLeft="303.749995473773,294.449994734824" />
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Update Landing (update)"
+          TopLeft="552.499991767108,482.916659867267" />
         <NodeLayout
           Size="188,42.6666666666667"
           Id="Package\Load into Landing\Update Landing (error)"
           TopLeft="746.249988880009,484.899991329312" />
+        <NodeLayout
+          Size="125.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\All inserts"
+          TopLeft="303.749995473773,294.449994734824" />
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Updated counts]"
-          TopLeft="697.89582407133,291.616662215094">
+          TopLeft="697.89582407133,290.966662226717">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,86.6833310203747"
+              EndConnector="0,87.3333310087514"
               Start="0,0"
-              End="0,79.1833310203747">
+              End="0,79.8333310087514">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,79.1833310203747" />
+                    End="0,79.8333310087514" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-35.1465234375,33.7869780101874,70.293046875,11.609375"
+              BoundingBox="-35.1465234375,34.1119780043757,70.293046875,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3802,33 +3781,33 @@ WHERE id = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="169.916663667808,79.5333311482274"
+              EndConnector="169.916663667808,78.8833311598502"
               Start="0,0"
-              End="169.916663667808,72.0333311482274">
+              End="169.916663667808,71.3833311598502">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.274395248556" />
+                    End="0,28.0106271373305" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.274395248556"
-                    Point2="0,32.274395248556"
-                    Point3="4,32.274395248556" />
+                    Point1="0,28.0106271373305"
+                    Point2="0,32.0106271373305"
+                    Point3="4,32.0106271373305" />
                   <mssgle:LineSegment
-                    End="165.916663667808,32.274395248556" />
+                    End="165.916663667808,32.0106271373305" />
                   <mssgle:CubicBezierSegment
-                    Point1="165.916663667808,32.274395248556"
-                    Point2="169.916663667808,32.274395248556"
-                    Point3="169.916663667808,36.274395248556" />
+                    Point1="165.916663667808,32.0106271373305"
+                    Point2="169.916663667808,32.0106271373305"
+                    Point3="169.916663667808,36.0106271373305" />
                   <mssgle:LineSegment
-                    End="169.916663667808,72.0333311482274" />
+                    End="169.916663667808,71.3833311598502" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="36.766945115154,37.274395248556,96.3827734375,11.609375"
+              BoundingBox="36.7669451151538,37.0106271373305,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3854,7 +3833,7 @@ WHERE id = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
