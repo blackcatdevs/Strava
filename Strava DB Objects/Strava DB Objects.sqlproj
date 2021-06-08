@@ -73,7 +73,7 @@
     <Build Include="Tables\landing.activities.sql" />
     <Build Include="Stored Procedures\landing.SP_get_activities.sql" />
     <Build Include="Tables\staging.activities.sql" />
-    <Build Include="Server Configuration\set_advanced_options.sql" />
+    <PostDeploy Include="Server Configuration\set_advanced_options.sql" />
     <None Include="Stored Procedures\landing.SP_get_historic_activities.sql" />
   </ItemGroup>
 </Project>
