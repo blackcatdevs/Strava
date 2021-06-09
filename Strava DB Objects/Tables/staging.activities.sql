@@ -1,13 +1,13 @@
 ﻿CREATE TABLE Staging.Activities (
 ID UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
 athlete_id VARCHAR(50) NOT NULL,
-name NVARCHAR(250) NOT NULL,
+[name] NVARCHAR(250) NOT NULL,
 distance NUMERIC(10, 2) ,
 moving_time INT ,
 elapsed_time INT ,
 total_elevation_gain NUMERIC(5, 1) ,
-activity_type_id INT ,
-workout_type INT ,
+activity_type VARCHAR(50) ,
+workout_type VARCHAR(50) ,
 activity_id VARCHAR(50) NOT NULL UNIQUE,
 external_id VARCHAR(100) ,
 start_date DATETIME NOT NULL,
@@ -27,4 +27,3 @@ suffer_score NUMERIC(4, 1) ,
 date_created DATETIME DEFAULT GETDATE(),
 date_amended DATETIME DEFAULT GETDATE()
 );
-
