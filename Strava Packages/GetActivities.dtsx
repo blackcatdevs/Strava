@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="154"
-  DTS:VersionGUID="{F409AD8D-866A-4F94-8592-A6C3F6E82EA3}">
+  DTS:VersionBuild="156"
+  DTS:VersionGUID="{F74925E3-1495-4494-BA51-648CEEE511F7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -177,6 +177,16 @@
                       cachedLength="250"
                       cachedName="Staging_photo_count"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[date_created]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="date_created"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[date_created]" />
+                    <inputColumn
+                      refId="Package\Load into Landing\Existing records.Inputs[Conditional Split Input].Columns[Staging_date_amended]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Staging_date_amended"
+                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_date_amended]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -196,13 +206,13 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">(#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[kudos_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[comment_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[photo_count]})</property>
+                      name="Expression">[DATEDIFF]("hh",#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_date_amended]},#{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[date_created]}) &gt; 0 &amp;&amp; (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[kudos_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[comment_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[athlete_count]}) || (#{Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]} != #{Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[photo_count]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">(Staging_kudos_count != kudos_count) || (Staging_comment_count != comment_count) || (Staging_athlete_count != athlete_count) || (Staging_photo_count != photo_count)</property>
+                      name="FriendlyExpression">DATEDIFF("hh",Staging_date_amended,date_created) &gt; 0 &amp;&amp; (Staging_kudos_count != kudos_count) || (Staging_comment_count != comment_count) || (Staging_athlete_count != athlete_count) || (Staging_photo_count != photo_count)</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -840,6 +850,15 @@ ORDER BY activity_id, date_created DESC</property>
                       lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[ID]"
                       name="ID"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[date_created]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].ExternalColumns[date_created]"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].Columns[date_created]"
+                      name="date_created"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1455,6 +1474,11 @@ ORDER BY activity_id, date_created DESC</property>
                       lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Error Output].Columns[date_created]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Error Output].Columns[date_created]"
+                      name="date_created" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -2503,18 +2527,17 @@ where [refTable].[activity_id] = ?</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]"
-                      dataType="wstr"
+                      refId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_date_amended]"
+                      dataType="dbTimeStamp"
                       errorOrTruncationOperation="Copy Column"
-                      length="250"
-                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_total_photo_count]"
-                      name="Staging_total_photo_count"
+                      lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_date_amended]"
+                      name="Staging_date_amended"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">total_photo_count</property>
+                          name="CopyFromReferenceColumn">date_amended</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -3412,7 +3435,7 @@ WHERE activity_id = ?</property>
         <NodeLayout
           Size="202.666666666667,42.6666666666667"
           Id="Package\Load into Landing\Get activities from landing"
-          TopLeft="394.999994114042,32.4999994188547" />
+          TopLeft="404.99999396503,30.5499994537234" />
         <NodeLayout
           Size="138,42.6666666666667"
           Id="Package\Load into Landing\Insert errors"
@@ -3424,19 +3447,15 @@ WHERE activity_id = ?</property>
         <NodeLayout
           Size="164,42.6666666666667"
           Id="Package\Load into Landing\Lookup in Staging"
-          TopLeft="421.249993722886,126.749997733533" />
-        <NodeLayout
-          Size="152,42.6666666666667"
-          Id="Package\Load into Landing\Update Staging"
-          TopLeft="620.624990751967,378.299993235468" />
-        <NodeLayout
-          Size="153.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Existing records"
-          TopLeft="622.499990724027,248.29999556005" />
+          TopLeft="423.124993694946,128.049997710287" />
         <NodeLayout
           Size="131.333333333334,42.6666666666667"
           Id="Package\Load into Landing\Merge Join"
           TopLeft="308.749995399266,378.299993235469" />
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Existing records"
+          TopLeft="623.124990714714,250.899995513558" />
         <NodeLayout
           Size="166.666666666667,42.6666666666667"
           Id="Package\Load into Landing\Insert into Staging"
@@ -3446,34 +3465,38 @@ WHERE activity_id = ?</property>
           Id="Package\Load into Landing\Update Landing (update)"
           TopLeft="552.499991767108,482.916659867267" />
         <NodeLayout
+          Size="125.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\All inserts"
+          TopLeft="303.749995473773,294.449994734824" />
+        <NodeLayout
           Size="188,42.6666666666667"
           Id="Package\Load into Landing\Update Landing (error)"
           TopLeft="746.249988880009,484.899991329312" />
         <NodeLayout
-          Size="125.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\All inserts"
-          TopLeft="303.749995473773,294.449994734824" />
+          Size="152,42.6666666666667"
+          Id="Package\Load into Landing\Update Staging"
+          TopLeft="620.624990751967,378.299993235468" />
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Updated counts]"
-          TopLeft="697.89582407133,290.966662226717">
+          TopLeft="698.208324066674,293.566662180225">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,87.3333310087514"
+              EndConnector="0,84.733331055243"
               Start="0,0"
-              End="0,79.8333310087514">
+              End="0,77.233331055243">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,79.8333310087514" />
+                    End="0,77.233331055243" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-35.1465234375,34.1119780043757,70.293046875,11.609375"
+              BoundingBox="-35.1465234375,32.8119780276215,70.293046875,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3523,18 +3546,18 @@ WHERE activity_id = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[OLE DB Source Output]"
-          TopLeft="499.791660585131,75.1666660855214">
+          TopLeft="505.729160496655,73.2166661203901">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,51.5833316480116"
+              EndConnector="0,54.8333315898971"
               Start="0,0"
-              End="0,44.0833316480116">
+              End="0,47.3333315898971">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.0833316480116" />
+                    End="0,47.3333315898971" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3741,73 +3764,73 @@ WHERE activity_id = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Lookup No Match Output]"
-          TopLeft="477.249993722886,169.4166644002">
+          TopLeft="479.124993694946,170.716664376954">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-210.958330120271,43.7833317874873"
+              EndConnector="-212.833330092331,42.4833318107331"
               Start="0,0"
-              End="-210.958330120271,36.2833317874873">
+              End="-212.833330092331,34.9833318107331">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7671491311543" />
+                    End="0,13.2396129087033" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.7671491311543"
-                    Point2="0,17.7671491311543"
-                    Point3="-4,17.7671491311543" />
+                    Point1="0,13.2396129087033"
+                    Point2="0,17.2396129087033"
+                    Point3="-4,17.2396129087033" />
                   <mssgle:LineSegment
-                    End="-206.958330120271,17.7671491311543" />
+                    End="-208.833330092331,17.2396129087033" />
                   <mssgle:CubicBezierSegment
-                    Point1="-206.958330120271,17.7671491311543"
-                    Point2="-210.958330120271,17.7671491311543"
-                    Point3="-210.958330120271,21.7671491311543" />
+                    Point1="-208.833330092331,17.2396129087033"
+                    Point2="-212.833330092331,17.2396129087033"
+                    Point3="-212.833330092331,21.2396129087033" />
                   <mssgle:LineSegment
-                    End="-210.958330120271,36.2833317874873" />
+                    End="-212.833330092331,34.9833318107331" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-161.285551778885,22.7671491311543,111.6127734375,11.609375"
+              BoundingBox="-162.223051764915,22.2396129087033,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Lookup Match Output]"
-          TopLeft="529.249993722886,169.4166644002">
+          TopLeft="531.124993694946,170.716664376954">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="169.916663667808,78.8833311598502"
+              EndConnector="168.666663686434,80.1833311366045"
               Start="0,0"
-              End="169.916663667808,71.3833311598502">
+              End="168.666663686434,72.6833311366045">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.0106271373305" />
+                    End="0,28.5381633597815" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.0106271373305"
-                    Point2="0,32.0106271373305"
-                    Point3="4,32.0106271373305" />
+                    Point1="0,28.5381633597815"
+                    Point2="0,32.5381633597815"
+                    Point3="4,32.5381633597815" />
                   <mssgle:LineSegment
-                    End="165.916663667808,32.0106271373305" />
+                    End="164.666663686434,32.5381633597815" />
                   <mssgle:CubicBezierSegment
-                    Point1="165.916663667808,32.0106271373305"
-                    Point2="169.916663667808,32.0106271373305"
-                    Point3="169.916663667808,36.0106271373305" />
+                    Point1="164.666663686434,32.5381633597815"
+                    Point2="168.666663686434,32.5381633597815"
+                    Point3="168.666663686434,36.5381633597815" />
                   <mssgle:LineSegment
-                    End="169.916663667808,71.3833311598502" />
+                    End="168.666663686434,72.6833311366045" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="36.7669451151538,37.0106271373305,96.3827734375,11.609375"
+              BoundingBox="36.141945124467,37.5381633597815,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3843,7 +3866,7 @@ WHERE activity_id = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
