@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="182"
-  DTS:VersionGUID="{952D8684-09BD-45DE-972F-CF5F0EFF4B8C}">
+  DTS:VersionBuild="194"
+  DTS:VersionGUID="{17838C24-9F41-4AD2-9AA5-9A3B1F8C33E0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -286,7 +286,7 @@ activity_type,
 workout_type,
 activity_id,
 external_id,
-start_date,
+CONVERT(DATETIME, CONVERT(DATETIMEOFFSET,start_date)) AS start_date,
 achievement_count,
 kudos_count,
 comment_count,
@@ -646,8 +646,7 @@ WHERE date_processed IS NULL</property>
                       name="external_id" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].ExternalColumns[start_date]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="dbTimeStamp"
                       name="start_date" />
                     <externalMetadataColumn
                       refId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Output].ExternalColumns[achievement_count]"
@@ -790,8 +789,7 @@ WHERE date_processed IS NULL</property>
                       name="external_id" />
                     <outputColumn
                       refId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Error Output].Columns[start_date]"
-                      dataType="wstr"
-                      length="250"
+                      dataType="dbTimeStamp"
                       lineageId="Package\Load into Landing\Get activities from landing.Outputs[OLE DB Source Error Output].Columns[start_date]"
                       name="start_date" />
                     <outputColumn
@@ -1137,12 +1135,15 @@ WHERE date_processed IS NULL</property>
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[tran_total_elevation_gain]"
                       cachedDataType="numeric"
                       cachedName="tran_total_elevation_gain"
-                      cachedPrecision="18"
+                      cachedPrecision="5"
+                      cachedScale="1"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[total_elevation_gain]"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_total_elevation_gain]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[tran_workout_type]"
-                      cachedDataType="i4"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
                       cachedName="tran_workout_type"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[workout_type]"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_workout_type]" />
@@ -1164,9 +1165,7 @@ WHERE date_processed IS NULL</property>
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_external_id]" />
                     <inputColumn
                       refId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].Columns[tran_start_date]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
+                      cachedDataType="dbTimeStamp"
                       cachedName="tran_start_date"
                       externalMetadataColumnId="Package\Load into Landing\Insert into Staging.Inputs[OLE DB Destination Input].ExternalColumns[start_date]"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_start_date]" />
@@ -1927,20 +1926,6 @@ where [refTable].[activity_id] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Load into Landing\Remove unused columns.Inputs[Union All Input 1].Columns[tran_total_elevation_gain]"
-                      cachedDataType="numeric"
-                      cachedName="tran_total_elevation_gain"
-                      cachedPrecision="18"
-                      lineageId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_total_elevation_gain]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_total_elevation_gain]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\Load into Landing\Remove unused columns.Inputs[Union All Input 1].Columns[tran_activity_type]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -1953,19 +1938,6 @@ where [refTable].[activity_id] = ?</property>
                           dataType="System.Int32"
                           description="Output column lineage ID"
                           name="OutputColumnLineageID">#{Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_activity_type]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load into Landing\Remove unused columns.Inputs[Union All Input 1].Columns[tran_workout_type]"
-                      cachedDataType="i4"
-                      cachedName="tran_workout_type"
-                      lineageId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_workout_type]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_workout_type]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -1996,21 +1968,6 @@ where [refTable].[activity_id] = ?</property>
                           dataType="System.Int32"
                           description="Output column lineage ID"
                           name="OutputColumnLineageID">#{Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_external_id]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Load into Landing\Remove unused columns.Inputs[Union All Input 1].Columns[tran_start_date]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
-                      cachedName="tran_start_date"
-                      lineageId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_start_date]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_start_date]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -2207,6 +2164,49 @@ where [refTable].[activity_id] = ?</property>
                           name="OutputColumnLineageID">#{Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[landing_date_created]}</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\Load into Landing\Remove unused columns.Inputs[Union All Input 1].Columns[tran_start_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="tran_start_date"
+                      lineageId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_start_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_start_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load into Landing\Remove unused columns.Inputs[Union All Input 1].Columns[tran_workout_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="tran_workout_type"
+                      lineageId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_workout_type]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_workout_type]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load into Landing\Remove unused columns.Inputs[Union All Input 1].Columns[tran_total_elevation_gain]"
+                      cachedDataType="numeric"
+                      cachedName="tran_total_elevation_gain"
+                      cachedPrecision="5"
+                      cachedScale="1"
+                      lineageId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_total_elevation_gain]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_total_elevation_gain]}</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -2259,23 +2259,12 @@ where [refTable].[activity_id] = ?</property>
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_elapsed_time]"
                       name="tran_elapsed_time" />
                     <outputColumn
-                      refId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_total_elevation_gain]"
-                      dataType="numeric"
-                      lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_total_elevation_gain]"
-                      name="tran_total_elevation_gain"
-                      precision="18" />
-                    <outputColumn
                       refId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_activity_type]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_activity_type]"
                       name="tran_activity_type" />
-                    <outputColumn
-                      refId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_workout_type]"
-                      dataType="i4"
-                      lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_workout_type]"
-                      name="tran_workout_type" />
                     <outputColumn
                       refId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_activity_id]"
                       codePage="1252"
@@ -2290,13 +2279,6 @@ where [refTable].[activity_id] = ?</property>
                       length="100"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_external_id]"
                       name="tran_external_id" />
-                    <outputColumn
-                      refId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_start_date]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
-                      lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_start_date]"
-                      name="tran_start_date" />
                     <outputColumn
                       refId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_achievement_count]"
                       dataType="i4"
@@ -2379,6 +2361,25 @@ where [refTable].[activity_id] = ?</property>
                       dataType="dbTimeStamp"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[landing_date_created]"
                       name="landing_date_created" />
+                    <outputColumn
+                      refId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_start_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_start_date]"
+                      name="tran_start_date" />
+                    <outputColumn
+                      refId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_workout_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_workout_type]"
+                      name="tran_workout_type" />
+                    <outputColumn
+                      refId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_total_elevation_gain]"
+                      dataType="numeric"
+                      lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_total_elevation_gain]"
+                      name="tran_total_elevation_gain"
+                      precision="5"
+                      scale="1" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -2636,7 +2637,8 @@ where [refTable].[activity_id] = ?</property>
                       errorRowDisposition="FailComponent"
                       lineageId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_total_elevation_gain]"
                       name="tran_total_elevation_gain"
-                      precision="18"
+                      precision="5"
+                      scale="1"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -2674,9 +2676,11 @@ where [refTable].[activity_id] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_workout_type]"
-                      dataType="i4"
+                      codePage="1252"
+                      dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
+                      length="50"
                       lineageId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_workout_type]"
                       name="tran_workout_type"
                       truncationRowDisposition="FailComponent">
@@ -2738,11 +2742,9 @@ where [refTable].[activity_id] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_start_date]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      length="100"
                       lineageId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output].Columns[tran_start_date]"
                       name="tran_start_date"
                       truncationRowDisposition="FailComponent">
@@ -3757,17 +3759,45 @@ WHERE activity_id = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Load into Landing\Insert into Staging"
+          TopLeft="81.2499987892806,320.066661134163" />
+        <NodeLayout
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\Load into Landing\Get activities from landing"
+          TopLeft="119.999998211862,13.9333328219255" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Load into Landing\Lookup in Staging"
+          TopLeft="424.37499367632,164.06666392366" />
+        <NodeLayout
           Size="131.333333333334,42.6666666666667"
           Id="Package\Load into Landing\Merge Join"
           TopLeft="308.749995399266,414.316659448842" />
+        <NodeLayout
+          Size="176.666666666667,42.6666666666667"
+          Id="Package\Load into Landing\Remove unused columns"
+          TopLeft="423.124993694946,95.5499982914329" />
         <NodeLayout
           Size="152,42.6666666666667"
           Id="Package\Load into Landing\Update Staging"
           TopLeft="621.874990733341,414.966659437218" />
         <NodeLayout
+          Size="177.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Transform datatypes"
+          TopLeft="421.874993713573,18.7833334146937" />
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Multicast"
+          TopLeft="206.874996917323,248.566662412683" />
+        <NodeLayout
           Size="138,42.6666666666667"
           Id="Package\Load into Landing\Insert errors"
           TopLeft="89.3749986682087,407.816659565071" />
+        <NodeLayout
+          Size="217.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Update Landing (insert or error)"
+          TopLeft="298.749995548278,518.283326092263" />
         <NodeLayout
           Size="153.333333333334,42.6666666666667"
           Id="Package\Load into Landing\Update Landing (update)"
@@ -3777,33 +3807,35 @@ WHERE activity_id = ?</property>
           Id="Package\Load into Landing\Update Landing (error)"
           TopLeft="746.249988880009,520.916657542685" />
         <NodeLayout
-          Size="121.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Multicast"
-          TopLeft="206.874996917323,248.566662412683" />
-        <NodeLayout
-          Size="177.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Transform datatypes"
-          TopLeft="421.874993713573,17.4833334379395" />
-        <NodeLayout
-          Size="202.666666666667,42.6666666666667"
-          Id="Package\Load into Landing\Get activities from landing"
-          TopLeft="119.999998211862,13.9333328219255" />
-        <NodeLayout
-          Size="166.666666666667,42.6666666666667"
-          Id="Package\Load into Landing\Insert into Staging"
-          TopLeft="79.9999988079071,320.066661134163" />
-        <NodeLayout
           Size="125.333333333334,42.6666666666667"
           Id="Package\Load into Landing\All inserts"
           TopLeft="303.749995473773,330.466660948197" />
         <NodeLayout
-          Size="164,42.6666666666667"
-          Id="Package\Load into Landing\Lookup in Staging"
-          TopLeft="424.37499367632,164.06666392366" />
-        <NodeLayout
-          Size="217.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Update Landing (insert or error)"
-          TopLeft="298.749995548278,518.283326092263" />
+          Size="238.666666666667,42.6666666666667"
+          Id="Package\Load into Landing\Check for changed count columns"
+          TopLeft="584.999991282821,301.033328939875" />
+        <EdgeLayout
+          Id="Package\Load into Landing.Paths[Union All Output 1]"
+          TopLeft="508.9166603523,138.2166649581">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25.8499989655605"
+              Start="0,0"
+              End="0,18.3499989655605">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.3499989655605" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Sort Output1]"
           TopLeft="227.374998668209,432.39999284029">
@@ -3849,19 +3881,41 @@ WHERE activity_id = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load into Landing.Paths[OLE DB Destination Error Output]"
-          TopLeft="160.854165404725,362.73332780083">
+          Id="Package\Load into Landing.Paths[OLE DB Source Output]"
+          TopLeft="322.666664878529,37.6916664516429">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45.0833317642414"
+              EndConnector="99.2083288350445,0"
               Start="0,0"
-              End="0,37.5833317642414">
+              End="91.7083288350445,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5833317642414" />
+                    End="91.7083288350445,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load into Landing.Paths[OLE DB Destination Error Output]"
+          TopLeft="161.479165395411,362.73332780083">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.0833317642413"
+              Start="0,0"
+              End="0,37.5833317642413">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5833317642413" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3982,26 +4036,26 @@ WHERE activity_id = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-85.3194425538602,28.8333320548132"
+              EndConnector="-84.0694425724868,28.8333320548134"
               Start="0,0"
-              End="-85.3194425538602,21.3333320548132">
+              End="-84.0694425724868,21.3333320548134">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,7.75849550174596" />
+                    End="0,7.75849550174601" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,7.75849550174596"
+                    Point1="0,7.75849550174601"
                     Point2="0,11.758495501746"
                     Point3="-4,11.758495501746" />
                   <mssgle:LineSegment
-                    End="-81.3194425538602,11.758495501746" />
+                    End="-80.0694425724868,11.758495501746" />
                   <mssgle:CubicBezierSegment
-                    Point1="-81.3194425538602,11.758495501746"
-                    Point2="-85.3194425538602,11.758495501746"
-                    Point3="-85.3194425538602,15.758495501746" />
+                    Point1="-80.0694425724868,11.758495501746"
+                    Point2="-84.0694425724868,11.758495501746"
+                    Point3="-84.0694425724868,15.758495501746" />
                   <mssgle:LineSegment
-                    End="-85.3194425538602,21.3333320548132" />
+                    End="-84.0694425724868,21.3333320548134" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4080,10 +4134,6 @@ WHERE activity_id = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="238.666666666667,42.6666666666667"
-          Id="Package\Load into Landing\Check for changed count columns"
-          TopLeft="584.999991282821,301.033328939875" />
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Lookup Match Output]"
           TopLeft="532.37499367632,206.733330590327">
@@ -4121,28 +4171,6 @@ WHERE activity_id = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load into Landing.Paths[OLE DB Source Output]"
-          TopLeft="322.666664878528,37.0416664632658">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="99.2083288350446,0"
-              Start="0,0"
-              End="91.7083288350446,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="91.7083288350446,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Load into Landing.Paths[Conditional Split Default Output]"
           TopLeft="701.104157674748,343.699995606541">
           <EdgeLayout.Curve>
@@ -4161,49 +4189,25 @@ WHERE activity_id = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-70.61390625,26.0542303528384,141.2278125,11.658203125"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="176.666666666667,42.6666666666667"
-          Id="Package\Load into Landing\Remove unused columns"
-          TopLeft="420.624993732199,92.9499983379245" />
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Data Conversion Output]"
-          TopLeft="509.749993722886,60.1500001046062">
+          TopLeft="510.99999370426,61.4500000813604">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32.7999982333184"
+              EndConnector="0,34.0999982100725"
               Start="0,0"
-              End="0,25.2999982333184">
+              End="0,26.5999982100725">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25.2999982333184" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load into Landing.Paths[Union All Output 1]"
-          TopLeft="507.666660370926,135.616665004591">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,28.4499989190692"
-              Start="0,0"
-              End="0,20.9499989190692">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.9499989190692" />
+                    End="0,26.5999982100725" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4215,6 +4219,19 @@ WHERE activity_id = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load into Landing\Insert into Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load into Landing\Get activities from landing">
     <Properties>
@@ -4234,7 +4251,7 @@ WHERE activity_id = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4244,23 +4261,10 @@ WHERE activity_id = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load into Landing\Insert into Staging">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
