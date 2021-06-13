@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="194"
-  DTS:VersionGUID="{17838C24-9F41-4AD2-9AA5-9A3B1F8C33E0}">
+  DTS:VersionBuild="200"
+  DTS:VersionGUID="{3B252583-E241-4B1F-A7D3-EA12F6C6966A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -117,65 +117,65 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load into Landing\Check for changed count columns"
+              refId="Package\Load into Landing\Check for recency and changed count columns"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
-              name="Check for changed count columns"
+              name="Check for recency and changed count columns"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input]"
+                  refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input]"
                   description="Input to the Conditional Split Transformation"
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[tran_kudos_count]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[tran_kudos_count]"
                       cachedDataType="i4"
                       cachedName="tran_kudos_count"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_kudos_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[tran_comment_count]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[tran_comment_count]"
                       cachedDataType="i4"
                       cachedName="tran_comment_count"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_comment_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[tran_athlete_count]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[tran_athlete_count]"
                       cachedDataType="i4"
                       cachedName="tran_athlete_count"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_athlete_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[tran_photo_count]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[tran_photo_count]"
                       cachedDataType="i4"
                       cachedName="tran_photo_count"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[tran_photo_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[Staging_kudos_count]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[Staging_kudos_count]"
                       cachedDataType="i4"
                       cachedName="Staging_kudos_count"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_kudos_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[Staging_comment_count]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[Staging_comment_count]"
                       cachedDataType="i4"
                       cachedName="Staging_comment_count"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_comment_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[Staging_athlete_count]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[Staging_athlete_count]"
                       cachedDataType="i4"
                       cachedName="Staging_athlete_count"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_athlete_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[Staging_photo_count]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[Staging_photo_count]"
                       cachedDataType="i4"
                       cachedName="Staging_photo_count"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_photo_count]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[landing_date_created]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[landing_date_created]"
                       cachedDataType="dbTimeStamp"
                       cachedName="landing_date_created"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[landing_date_created]" />
                     <inputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input].Columns[Staging_date_amended]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input].Columns[Staging_date_amended]"
                       cachedDataType="dbTimeStamp"
                       cachedName="Staging_date_amended"
                       lineageId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output].Columns[Staging_date_amended]" />
@@ -185,13 +185,13 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load into Landing\Check for changed count columns.Outputs[Updated counts]"
+                  refId="Package\Load into Landing\Check for recency and changed count columns.Outputs[Newer than staging and updated counts]"
                   description="Output 1 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
-                  name="Updated counts"
-                  synchronousInputId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input]"
+                  name="Newer than staging and updated counts"
+                  synchronousInputId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input]"
                   truncationRowDisposition="FailComponent">
                   <properties>
                     <property
@@ -213,11 +213,11 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load into Landing\Check for changed count columns.Outputs[Conditional Split Default Output]"
+                  refId="Package\Load into Landing\Check for recency and changed count columns.Outputs[Older than staging or unchanged counts]"
                   description="Default Output of the Conditional Split Transformation"
                   exclusionGroup="1"
-                  name="Conditional Split Default Output"
-                  synchronousInputId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input]">
+                  name="Older than staging or unchanged counts"
+                  synchronousInputId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input]">
                   <properties>
                     <property
                       dataType="System.Boolean"
@@ -226,23 +226,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load into Landing\Check for changed count columns.Outputs[Conditional Split Error Output]"
+                  refId="Package\Load into Landing\Check for recency and changed count columns.Outputs[Conditional Split Error Output]"
                   description="Error Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Conditional Split Error Output"
-                  synchronousInputId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input]">
+                  synchronousInputId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load into Landing\Check for changed count columns.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load into Landing\Check for recency and changed count columns.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load into Landing\Check for changed count columns.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load into Landing\Check for recency and changed count columns.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load into Landing\Check for changed count columns.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load into Landing\Check for recency and changed count columns.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -3351,11 +3351,110 @@ WHERE id = ?
               </outputs>
             </component>
             <component
-              refId="Package\Load into Landing\Update Landing (update)"
+              refId="Package\Load into Landing\Update Landing (no change to staging)"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
               description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="Update Landing (update)"
+              name="Update Landing (no change to staging)"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE Landing.Activities SET 
+date_processed = GETDATE(),
+PROCESSED_AS = 'Not processed, no change or record in staging is newer'
+WHERE id = ?
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load into Landing\Update Landing (no change to staging).Connections[OleDbConnection]"
+                  connectionManagerID="{9BC48895-AA35-4A12-8DD1-6CCFED300187}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[HPPAVILLION_DEV_Strava_simon]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load into Landing\Update Landing (no change to staging).Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load into Landing\Update Landing (no change to staging).Inputs[OLE DB Command Input].Columns[landing_ID]"
+                      cachedDataType="guid"
+                      cachedName="landing_ID"
+                      externalMetadataColumnId="Package\Load into Landing\Update Landing (no change to staging).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[landing_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load into Landing\Update Landing (no change to staging).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="guid"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load into Landing\Update Landing (no change to staging).Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Load into Landing\Update Landing (no change to staging).Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load into Landing\Update Landing (no change to staging).Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Load into Landing\Update Landing (no change to staging).Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load into Landing\Update Landing (no change to staging).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load into Landing\Update Landing (no change to staging).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load into Landing\Update Landing (no change to staging).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load into Landing\Update Landing (no change to staging).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load into Landing\Update Landing (staging updated)"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Landing (staging updated)"
               usesDispositions="true"
               version="2">
               <properties>
@@ -3380,7 +3479,7 @@ WHERE id = ?
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load into Landing\Update Landing (update).Connections[OleDbConnection]"
+                  refId="Package\Load into Landing\Update Landing (staging updated).Connections[OleDbConnection]"
                   connectionManagerID="{9BC48895-AA35-4A12-8DD1-6CCFED300187}:external"
                   connectionManagerRefId="Project.ConnectionManagers[HPPAVILLION_DEV_Strava_simon]"
                   description="The OLE DB runtime connection used to access the database."
@@ -3388,23 +3487,23 @@ WHERE id = ?
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load into Landing\Update Landing (update).Inputs[OLE DB Command Input]"
+                  refId="Package\Load into Landing\Update Landing (staging updated).Inputs[OLE DB Command Input]"
                   errorOrTruncationOperation="Command Execution"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Command Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load into Landing\Update Landing (update).Inputs[OLE DB Command Input].Columns[landing_ID]"
+                      refId="Package\Load into Landing\Update Landing (staging updated).Inputs[OLE DB Command Input].Columns[landing_ID]"
                       cachedDataType="guid"
                       cachedName="landing_ID"
-                      externalMetadataColumnId="Package\Load into Landing\Update Landing (update).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      externalMetadataColumnId="Package\Load into Landing\Update Landing (staging updated).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       lineageId="Package\Load into Landing\Remove unused columns.Outputs[Union All Output 1].Columns[landing_ID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load into Landing\Update Landing (update).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      refId="Package\Load into Landing\Update Landing (staging updated).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       dataType="guid"
                       name="Param_0">
                       <properties>
@@ -3419,29 +3518,29 @@ WHERE id = ?
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load into Landing\Update Landing (update).Outputs[OLE DB Command Output]"
+                  refId="Package\Load into Landing\Update Landing (staging updated).Outputs[OLE DB Command Output]"
                   exclusionGroup="1"
                   name="OLE DB Command Output"
-                  synchronousInputId="Package\Load into Landing\Update Landing (update).Inputs[OLE DB Command Input]">
+                  synchronousInputId="Package\Load into Landing\Update Landing (staging updated).Inputs[OLE DB Command Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load into Landing\Update Landing (update).Outputs[OLE DB Command Error Output]"
+                  refId="Package\Load into Landing\Update Landing (staging updated).Outputs[OLE DB Command Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Command Error Output"
-                  synchronousInputId="Package\Load into Landing\Update Landing (update).Inputs[OLE DB Command Input]">
+                  synchronousInputId="Package\Load into Landing\Update Landing (staging updated).Inputs[OLE DB Command Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load into Landing\Update Landing (update).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      refId="Package\Load into Landing\Update Landing (staging updated).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load into Landing\Update Landing (update).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load into Landing\Update Landing (staging updated).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load into Landing\Update Landing (update).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load into Landing\Update Landing (staging updated).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load into Landing\Update Landing (update).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load into Landing\Update Landing (staging updated).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -3624,18 +3723,13 @@ WHERE activity_id = ?</property>
           </components>
           <paths>
             <path
-              refId="Package\Load into Landing.Paths[Conditional Split Default Output]"
-              endId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input]"
-              name="Conditional Split Default Output"
-              startId="Package\Load into Landing\Check for changed count columns.Outputs[Conditional Split Default Output]" />
-            <path
               refId="Package\Load into Landing.Paths[Data Conversion Output]"
               endId="Package\Load into Landing\Remove unused columns.Inputs[Union All Input 1]"
               name="Data Conversion Output"
               startId="Package\Load into Landing\Transform datatypes.Outputs[Data Conversion Output]" />
             <path
               refId="Package\Load into Landing.Paths[Lookup Match Output]"
-              endId="Package\Load into Landing\Check for changed count columns.Inputs[Conditional Split Input]"
+              endId="Package\Load into Landing\Check for recency and changed count columns.Inputs[Conditional Split Input]"
               name="Lookup Match Output"
               startId="Package\Load into Landing\Lookup in Staging.Outputs[Lookup Match Output]" />
             <path
@@ -3659,13 +3753,23 @@ WHERE activity_id = ?</property>
               name="Multicast Output 3"
               startId="Package\Load into Landing\Multicast.Outputs[Multicast Output 3]" />
             <path
+              refId="Package\Load into Landing.Paths[Newer than staging and updated counts]"
+              endId="Package\Load into Landing\Update Staging.Inputs[OLE DB Command Input]"
+              name="Newer than staging and updated counts"
+              startId="Package\Load into Landing\Check for recency and changed count columns.Outputs[Newer than staging and updated counts]" />
+            <path
+              refId="Package\Load into Landing.Paths[Older than staging or unchanged counts]"
+              endId="Package\Load into Landing\Update Landing (no change to staging).Inputs[OLE DB Command Input]"
+              name="Older than staging or unchanged counts"
+              startId="Package\Load into Landing\Check for recency and changed count columns.Outputs[Older than staging or unchanged counts]" />
+            <path
               refId="Package\Load into Landing.Paths[OLE DB Command Error Output]"
               endId="Package\Load into Landing\Update Landing (error).Inputs[OLE DB Command Input]"
               name="OLE DB Command Error Output"
               startId="Package\Load into Landing\Update Staging.Outputs[OLE DB Command Error Output]" />
             <path
               refId="Package\Load into Landing.Paths[OLE DB Command Output]"
-              endId="Package\Load into Landing\Update Landing (update).Inputs[OLE DB Command Input]"
+              endId="Package\Load into Landing\Update Landing (staging updated).Inputs[OLE DB Command Input]"
               name="OLE DB Command Output"
               startId="Package\Load into Landing\Update Staging.Outputs[OLE DB Command Output]" />
             <path
@@ -3727,21 +3831,21 @@ WHERE activity_id = ?</property>
         <NodeLayout
           Size="164,42.6666666666667"
           Id="Package\Load into Landing"
-          TopLeft="223.749996665865,184.599996699094" />
+          TopLeft="224.374996656552,185.249996687471" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="302.270829966602,97.9508824324981">
+          TopLeft="302.583329961946,97.9508824324981">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,86.649114266596"
+              EndConnector="0,87.299114254973"
               Start="0,0"
-              End="0,79.149114266596">
+              End="0,79.799114254973">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,79.149114266596" />
+                    End="0,79.799114254973" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3763,6 +3867,10 @@ WHERE activity_id = ?</property>
           Id="Package\Load into Landing\Insert into Staging"
           TopLeft="81.2499987892806,320.066661134163" />
         <NodeLayout
+          Size="152,42.6666666666667"
+          Id="Package\Load into Landing\Update Staging"
+          TopLeft="621.874990733341,414.966659437218" />
+        <NodeLayout
           Size="202.666666666667,42.6666666666667"
           Id="Package\Load into Landing\Get activities from landing"
           TopLeft="119.999998211862,13.9333328219255" />
@@ -3779,9 +3887,9 @@ WHERE activity_id = ?</property>
           Id="Package\Load into Landing\Remove unused columns"
           TopLeft="423.124993694946,95.5499982914329" />
         <NodeLayout
-          Size="152,42.6666666666667"
-          Id="Package\Load into Landing\Update Staging"
-          TopLeft="621.874990733341,414.966659437218" />
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Load into Landing\Update Landing (staging updated)"
+          TopLeft="552.499991767108,518.93332608064" />
         <NodeLayout
           Size="177.333333333334,42.6666666666667"
           Id="Package\Load into Landing\Transform datatypes"
@@ -3800,8 +3908,8 @@ WHERE activity_id = ?</property>
           TopLeft="298.749995548278,518.283326092263" />
         <NodeLayout
           Size="153.333333333334,42.6666666666667"
-          Id="Package\Load into Landing\Update Landing (update)"
-          TopLeft="552.499991767108,518.93332608064" />
+          Id="Package\Load into Landing\Update Landing (no change to staging)"
+          TopLeft="947.49998588115,293.383330113787" />
         <NodeLayout
           Size="188,42.6666666666667"
           Id="Package\Load into Landing\Update Landing (error)"
@@ -3811,9 +3919,9 @@ WHERE activity_id = ?</property>
           Id="Package\Load into Landing\All inserts"
           TopLeft="303.749995473773,330.466660948197" />
         <NodeLayout
-          Size="238.666666666667,42.6666666666667"
-          Id="Package\Load into Landing\Check for changed count columns"
-          TopLeft="584.999991282821,301.033328939875" />
+          Size="298.666666666667,42.6666666666667"
+          Id="Package\Load into Landing\Check for recency and changed count columns"
+          TopLeft="474.99999292195,297.133329009613" />
         <EdgeLayout
           Id="Package\Load into Landing.Paths[Union All Output 1]"
           TopLeft="508.9166603523,138.2166649581">
@@ -4140,57 +4248,33 @@ WHERE activity_id = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="171.958330939835,94.2999983495477"
+              EndConnector="91.9583325789631,90.399998419286"
               Start="0,0"
-              End="171.958330939835,86.7999983495477">
+              End="91.9583325789631,82.899998419286">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.2666659969179" />
+                    End="0,32.6840573295654" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,34.2666659969179"
-                    Point2="0,38.2666659969179"
-                    Point3="4,38.2666659969179" />
+                    Point1="0,32.6840573295654"
+                    Point2="0,36.6840573295654"
+                    Point3="4,36.6840573295654" />
                   <mssgle:LineSegment
-                    End="167.958330939835,38.2666659969179" />
+                    End="87.9583325789631,36.6840573295654" />
                   <mssgle:CubicBezierSegment
-                    Point1="167.958330939835,38.2666659969179"
-                    Point2="171.958330939835,38.2666659969179"
-                    Point3="171.958330939835,42.2666659969179" />
+                    Point1="87.9583325789631,36.6840573295654"
+                    Point2="91.9583325789631,36.6840573295654"
+                    Point3="91.9583325789631,40.6840573295654" />
                   <mssgle:LineSegment
-                    End="171.958330939835,86.7999983495477" />
+                    End="91.9583325789631,82.899998419286" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="37.7877787511675,43.2666659969179,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load into Landing.Paths[Conditional Split Default Output]"
-          TopLeft="701.104157674748,343.699995606541">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,71.2666638306768"
-              Start="0,0"
-              End="0,63.7666638306768">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,63.7666638306768" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-70.61390625,26.0542303528384,141.2278125,11.658203125"
+              BoundingBox="-2.21222042926845,41.6840573295654,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4214,6 +4298,66 @@ WHERE activity_id = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load into Landing.Paths[Newer than staging and updated counts]"
+          TopLeft="624.333326255283,339.799995676279">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.5416644780579,75.1666637609387"
+              Start="0,0"
+              End="73.5416644780579,67.6666637609387">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5833318804693" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.5833318804693"
+                    Point2="0,37.5833318804693"
+                    Point3="4,37.5833318804693" />
+                  <mssgle:LineSegment
+                    End="69.5416644780579,37.5833318804693" />
+                  <mssgle:CubicBezierSegment
+                    Point1="69.5416644780579,37.5833318804693"
+                    Point2="73.5416644780579,37.5833318804693"
+                    Point3="73.5416644780579,41.5833318804693" />
+                  <mssgle:LineSegment
+                    End="73.5416644780579,67.6666637609387" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-52.2517458859711,42.5833318804693,178.04515625,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load into Landing.Paths[Older than staging or unchanged counts]"
+          TopLeft="773.666659588616,316.591662895033">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="173.833326292534,0"
+              Start="0,0"
+              End="166.333326292534,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="166.333326292534,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-6.41343450998312,5,179.1601953125,11.6630859375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
