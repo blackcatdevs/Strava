@@ -9,5 +9,9 @@ Get historic activity data
 Get last 2 days activity data and put into landing schema table
 Process from Landing schema table into Staging, either inserting or updating
 
+V1.2.0 17th June 2021
+
+Data is now transformed during load into Staging
+
   
 
