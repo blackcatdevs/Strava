@@ -1,0 +1,19 @@
+Task: 
+Transform data during load into Staging
+
+Outcome:
+The columns in the Staging.Activities use more appropriate datatypes, and the transformation from NVARCHARs is handled 
+by the GetActivities package. 
+
+Additional Notes:
+N/A
+
+Assumptions:
+N/A
+
+Acceptance Criteria:
+The Staging.Activities table is rebuilt with new column datatypes and the GetActivites package runs without error.
+
+Risks:
+N/A
+
