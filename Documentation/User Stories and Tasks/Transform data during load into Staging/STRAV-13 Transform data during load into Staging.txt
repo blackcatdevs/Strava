@@ -10,6 +10,8 @@ DIM_activity_type is necessarily modelled as a type 0 (retain original) slowly c
 activity_type in normalized form hence there is no key to differentiate a changed (but similar to existing) value from a new 
 (but similar to existing) value. 
 
+DIM_date is also a type 0 - as expected for a date dimension.
+
 Assumptions:
 N/A
 
