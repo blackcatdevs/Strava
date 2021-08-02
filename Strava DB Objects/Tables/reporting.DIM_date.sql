@@ -1,4 +1,5 @@
 ﻿CREATE TABLE Reporting.DIM_date (
+    [Date_Id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
     [TheDate]             DATE          NULL,
     [TheDay]              INT           NULL,
     [TheDaySuffix]        CHAR (2)      NULL,
