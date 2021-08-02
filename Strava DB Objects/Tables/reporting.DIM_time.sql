@@ -1,5 +1,5 @@
 ﻿CREATE TABLE reporting.DIM_time (
-    [TimeId] [int] IDENTITY(1,1) NOT NULL,
+    [Time_Id] [int] IDENTITY(1,1) NOT NULL,
     [Time] [time](0) NULL,
     [Hour] [int] NULL,
     [Minute] [int] NULL,
