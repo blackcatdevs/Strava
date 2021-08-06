@@ -1,0 +1,4 @@
+Data is loaded into the data warehouse / reporting layer once is is considered to be stable - 2 days after the activity date 
+(since some numeric values such as the kudos count may change during this 2 day period).
+
+Since only stable activities are loaded and will not then change, the fact table is transactional.  

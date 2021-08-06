@@ -73,10 +73,14 @@
     <Build Include="Tables\landing.activities.sql" />
     <Build Include="Stored Procedures\landing.SP_get_activities.sql" />
     <Build Include="Tables\staging.activities.sql" />
-    <PostDeploy Include="Server Configuration\set_advanced_options.sql" />
     <None Include="Stored Procedures\landing.SP_get_historic_activities.sql" />
     <Build Include="Schemas\reporting.sql" />
     <Build Include="Tables\reporting.FACT_activities.sql" />
     <Build Include="Tables\reporting.DIM_activity_type.sql" />
+    <PostDeploy Include="Stored Procedures\config.populate_DIM_date.sql" />
+    <Build Include="Stored Procedures\config.populate_DIM_time.sql" />
+    <Build Include="Tables\reporting.DIM_date.sql" />
+    <Build Include="Tables\reporting.DIM_time.sql" />
+    <Build Include="Server Configuration\set_advanced_options.sql" />
   </ItemGroup>
 </Project>
