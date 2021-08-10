@@ -25,5 +25,7 @@ max_heartrate NUMERIC(4, 1) ,
 pr_count INT ,
 suffer_score NUMERIC(4, 1) ,
 date_created DATETIME DEFAULT GETDATE(),
-date_amended DATETIME DEFAULT GETDATE()
+date_amended DATETIME DEFAULT GETDATE(),
+date_processed DATETIME DEFAULT NULL,
+processed_as VARCHAR(250) DEFAULT NULL
 );

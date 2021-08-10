@@ -1,0 +1,18 @@
+Task: 
+Create and populate dimensional structure
+
+Outcome:
+Tables in the Reporting schema that form a simple star schema structure are created, and are populated by the GetActivities package. 
+
+Additional Notes:
+N/A
+
+Assumptions:
+N/A
+
+Acceptance Criteria:
+The Reportinging schema tables are created and the GetActivites package populates and updates them without error.
+
+Risks:
+N/A
+

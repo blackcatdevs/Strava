@@ -5,7 +5,7 @@
 		@per_page VARCHAR(5) = NULL --max is 200
 AS
 
---get activities, for last 7 days if not called with parameters 
+--get activities, for last 2 days if not called with parameters 
 --this requires a valid access token - if the current token has expired then run SP_get_access_token to generate a new one
 
 --declare variables
